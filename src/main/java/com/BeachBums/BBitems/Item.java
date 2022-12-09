@@ -1,22 +1,48 @@
 package com.BeachBums.BBitems;
 
+import com.BeachBums.BBitems.dto.ItemDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+
 import jakarta.persistence.Id;
 
 @Entity
 public class Item {
 
-    @GeneratedValue(strategy= @GenerationType.AUTO)
+    @GeneratedValue
     @Id
-    private Long id;
+    private Integer id;
+    private String name;
 
-    public Long getId() {
+    private String description;
+
+    private String image;
+
+    private Double price;
+
+
+    public Item(String name, String description, String image, Double price) {
+        this.name = name;
+        this.description = description;
+        this.image = image;
+        this.price = price;
+
+    }
+
+    public Item() {
+    }
+    public Item(ItemDto itemDto) {
+        this.name = itemDto.getName();
+        this.description = itemDto.getDescription();
+        this.image = itemDto.getImage();
+        this.price = itemDto.getPrice();
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -28,12 +54,12 @@ public class Item {
         this.name = name;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getImage() {
@@ -44,39 +70,20 @@ public class Item {
         this.image = image;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
-
-    private String name;
-
-    private String desc;
-
-    private String image;
-
-    private double price;
-
-
-    public Item (String itemName, double itemPrice, String itemImage, String itemDesc) {
-        this.name = itemName;
-        this.desc = itemDesc;
-        this.image = itemImage;
-        this.price = itemPrice;
-    }
-
-    public Item() {}
-
 
     @Override
     public String toString() {
         return "Item{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", desc='" + desc + '\'' +
+                ", desc='" + description + '\'' +
                 ", image='" + image + '\'' +
                 ", price=" + price +
                 '}';
