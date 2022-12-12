@@ -34,10 +34,9 @@ public class ItemController {
 
 
     @PostMapping("/all")
-    public Item save( @RequestBody Item item )
+    public Item save( @RequestBody ItemDto itemDto )
     {
-      itemService.addNewItem(item);
-        return item;
+        return itemService.addNewItem( new Item( itemDto ) );
     }
 
     @PutMapping( "/{id}" )

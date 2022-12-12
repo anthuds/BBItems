@@ -8,9 +8,9 @@ import java.util.Optional;
 
 @Service
 public class ItemService {
- private final ItemRepository itemRepository;
+    private final ItemRepository itemRepository;
 
-    public ItemService(@Autowired ItemRepository itemRepository) {
+    public ItemService(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
     }
 
@@ -18,15 +18,15 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
-    public Optional<Item> findById(int id){
+    public Optional<Item> findById(int id) {
         return itemRepository.findById(id);
     }
 
-    public void addNewItem(Item item){
-        itemRepository.save(item);
+    public Item addNewItem(Item item) {
+        return itemRepository.save(item);
     }
 
-    public void delete(Integer id){
+    public void delete(Integer id) {
         itemRepository.deleteById(id);
     }
 
